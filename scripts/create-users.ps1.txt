@@ -1,0 +1,27 @@
+# create-users.ps1
+# Automatisiertes Anlegen von Benutzern in der Domäne firma.lan
+# Autor: [Dein Name]
+# Datum: 2026
+
+Import-Module ActiveDirectory
+
+$OU = "OU=Mitarbeiter,DC=firma,DC=lan"
+$OU_IT = "OU=IT,OU=Mitarbeiter,DC=firma,DC=lan"
+$OU_Vertrieb = "OU=Vertrieb,OU=Mitarbeiter,DC=firma,DC=lan"
+
+# Standardpasswort (in echt würde man das sicherer machen)
+$Passwort = ConvertTo-SecureString "FisiLabor2026!" -AsPlainText -Force
+
+# Benutzer definieren (Name, SamAccountName, Abteilung)
+$Benutzer = @(
+    @{Name="Anna Schmidt"; Sam="aschmidt"; OU=$OU_IT},
+    @{Name="Jonas Weber"; Sam="jweber"; OU=$OU_IT},
+    @{Name="Lena Müller"; Sam="lmueller"; OU=$OU_Vertrieb},
+    @{Name="David Fischer"; Sam="dfischer"; OU=$OU_Vertrieb},
+    @{Name="Sarah Wagner"; Sam="swagner"; OU=$OU_Vertrieb}
+)
+
+foreach ($b in $Benutzer) {
+    New-ADUser -Name $b.Name -SamAccountName $b.Sam -UserPrincipalName "$($b.Sam)@firma.lan" -Path $b.OU -AccountPassword $Passwort -Enabled $true -ChangePasswordAtLogon $false
+    Write-Host "Benutzer $($b.Name) wurde in $($b.OU) angelegt."
+}
