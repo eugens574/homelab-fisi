@@ -23,5 +23,17 @@ Aufbau einer Mini-Infrastruktur in Hyper-V zur Übung typischer Aufgaben eines F
 - **Linux:** Debian, Ubuntu, Samba, SSSD, Kerberos, Systemd
 - **Virtualisierung:** Hyper-V, Virtual Switches, NAT
 
+## Screenshots
+
+### Hyper-V Infrastruktur
+![Hyper-V Manager mit allen VMs](screenshots/02-hyperv-netzwerk/hyperv-alle-vms.png)
+
+### Active Directory Struktur
+![Active Directory Benutzer und OUs](screenshots/04-benutzer/ad-ou-benutzer-gruppe.png)
+
+### Linux-Client in der Domäne
+![Ubuntu Realm Joined](screenshots/06-linux/ubuntu-realm-joined.png)
+
+
 ## Autor
 Eugen – Umschulung Fachinformatiker Systemintegration
